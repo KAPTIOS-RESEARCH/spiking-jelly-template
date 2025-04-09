@@ -1,0 +1,39 @@
+name: DefaultTask
+seed: 1234
+track: &track True
+script_path: /home/jovyan/work
+scaling_factor: &scaling_factor 2
+
+model:
+  class_name: DefaultCNN
+  module_name: src.models.default
+  parameters:
+
+dataloader:
+  class_name: DefaultDataloader
+  module_name: src.data.loaders.default
+  parameters:
+    data_dir: ./data
+    batch_size: 2
+    num_workers: 4
+    debug: True
+
+trainer:
+  class_name: DefaultTrainer
+  module_name: tasks.default.trainer
+  parameters:
+    num_epochs: 10
+    early_stopping_patience: 5
+    lr_scheduler: plateau
+    lr: 0.001
+    weight_decay: 0.00001
+    track: *track
+    loss:
+      class_name: NLLLoss
+      module_name: torch.nn
+      parameters:
+        reduction: sum
+
+experiment:
+  class_name: BaseExperiment
+  module_name: src.core.experiment
