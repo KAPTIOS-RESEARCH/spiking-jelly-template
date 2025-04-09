@@ -1,11 +1,9 @@
 name: DefaultTask
 seed: 1234
-track: &track True
+track: &track False
 script_path: /home/jovyan/work
-scaling_factor: &scaling_factor 2
-
 model:
-  class_name: DefaultCNN
+  class_name: DefaultSNN
   module_name: src.models.default
   parameters:
 
@@ -14,9 +12,9 @@ dataloader:
   module_name: src.data.loaders.default
   parameters:
     data_dir: ./data
-    batch_size: 2
+    batch_size: 64
     num_workers: 4
-    debug: True
+    debug: False
 
 trainer:
   class_name: DefaultTrainer
@@ -29,10 +27,9 @@ trainer:
     weight_decay: 0.00001
     track: *track
     loss:
-      class_name: NLLLoss
+      class_name: MSELoss
       module_name: torch.nn
       parameters:
-        reduction: sum
 
 experiment:
   class_name: BaseExperiment
