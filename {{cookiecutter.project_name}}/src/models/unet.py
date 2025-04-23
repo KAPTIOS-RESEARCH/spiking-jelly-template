@@ -53,7 +53,7 @@ class SpikingDecoder(nn.Module):
 
 
 class SpikingUNet(BaseJellyNet):
-    def __init__(self, n_input: int = 1, n_output: int = 1, n_steps: int = 5, encoding_method: str = 'IF'):
+    def __init__(self, n_input: int = 1, n_output: int = 1, n_steps: int = 5, encoding_method: str = 'direct'):
         super(SpikingUNet, self).__init__(
             n_input, n_output, n_steps, encoding_method)
 
