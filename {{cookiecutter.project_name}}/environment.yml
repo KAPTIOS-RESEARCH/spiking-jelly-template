@@ -1,4 +1,4 @@
-name: torch-env
+name: jelly-env
 channels:
   - defaults
 dependencies:
